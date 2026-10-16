@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOLTIX | Certificate Generator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= FORM SCREEN ================= -->
+<main class="form-screen" id="formScreen">
+  <div class="form-card">
+    <img src="logo.png" alt="VOLTIX" class="brand-mini-logo">
+
+    <h1>Generate Internship Certificate</h1>
+    <p class="form-sub">Enter the student's name and the track name, and get a ready-to-download completion certificate.</p>
+
+    <form id="certForm" novalidate>
+      <label for="studentName">Student Name</label>
+      <input type="text" id="studentName" placeholder="e.g. John Smith" autocomplete="off" required>
+
+      <label for="trackName">Track Name</label>
+      <div class="select-wrap">
+        <select id="trackName" required>
+          <option value="" disabled selected hidden>Choose a track</option>
+          <option value="Full Stack Development">Full Stack Development</option>
+          <option value="Data Analysis">Data Analysis</option>
+          <option value="UI / UX Design">UI / UX Design</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-generate">
+        <span>Preview Certificate</span>
+      </button>
+    </form>
+
+    <p class="form-note">You'll be able to review the certificate first, then download it as a PDF.</p>
+  </div>
+</main>
+
+<!-- ================= CERTIFICATE SCREEN ================= -->
+<section class="cert-screen" id="certScreen" hidden>
+
+  <div class="cert-toolbar">
+    <button type="button" class="btn-ghost" id="editBtn">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M20 11.5V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7.5a1 1 0 0 1 0 2H6v12h12v-6.5a1 1 0 0 1 2 0Z M18.4 3.6a1.5 1.5 0 0 1 2.1 2.1L11.7 14.5l-2.8.7.7-2.8Z"/></svg>
+      Edit Details
+    </button>
+    <button type="button" class="btn-download" id="downloadBtn">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v9.6l3-3a1 1 0 1 1 1.4 1.4l-4.7 4.7a1 1 0 0 1-1.4 0L6.6 12a1 1 0 1 1 1.4-1.4l3 3V4a1 1 0 0 1 1-1ZM5 19a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1Z"/></svg>
+      Download PDF
+    </button>
+  </div>
+
+  <div class="cert-stage">
+    <div class="certificate" id="certificate">
+
+      <!-- corner brackets -->
+      <span class="corner corner-tl">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cornerGrad-tl" x1="2" y1="32" x2="32" y2="2" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#34e0c4"/>
+              <stop offset="1" stop-color="#3aa8f0"/>
+            </linearGradient>
+          </defs>
+          <path d="M2,20 L2,9 L9,2 L20,2" fill="none" stroke="url(#cornerGrad-tl)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2,27 L2,32" fill="none" stroke="url(#cornerGrad-tl)" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+          <path d="M27,2 L32,2" fill="none" stroke="url(#cornerGrad-tl)" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+          <circle cx="2" cy="20" r="2.6" fill="#34e0c4"/>
+          <circle cx="20" cy="2" r="2.6" fill="#3aa8f0"/>
+        </svg>
+      </span>
+      <span class="corner corner-tr">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cornerGrad-tr" x1="46" y1="32" x2="16" y2="2" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#34e0c4"/>
+              <stop offset="1" stop-color="#3aa8f0"/>
+            </linearGradient>
+          </defs>
+          <path d="M46,20 L46,9 L39,2 L28,2" fill="none" stroke="url(#cornerGrad-tr)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M46,27 L46,32" fill="none" stroke="url(#cornerGrad-tr)" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+          <path d="M21,2 L16,2" fill="none" stroke="url(#cornerGrad-tr)" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+          <circle cx="46" cy="20" r="2.6" fill="#34e0c4"/>
+          <circle cx="28" cy="2" r="2.6" fill="#3aa8f0"/>
+        </svg>
+      </span>
+      <span class="corner corner-bl">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cornerGrad-bl" x1="2" y1="16" x2="32" y2="46" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#34e0c4"/>
+              <stop offset="1" stop-color="#3aa8f0"/>
+            </linearGradient>
+          </defs>
+          <path d="M2,28 L2,39 L9,46 L20,46" fill="none" stroke="url(#cornerGrad-bl)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2,21 L2,16" fill="none" stroke="url(#cornerGrad-bl)" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+          <path d="M27,46 L32,46" fill="none" stroke="url(#cornerGrad-bl)" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+          <circle cx="2" cy="28" r="2.6" fill="#34e0c4"/>
+          <circle cx="20" cy="46" r="2.6" fill="#3aa8f0"/>
+        </svg>
+      </span>
+      <span class="corner corner-br">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cornerGrad-br" x1="46" y1="16" x2="16" y2="46" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#34e0c4"/>
+              <stop offset="1" stop-color="#3aa8f0"/>
+            </linearGradient>
+          </defs>
+          <path d="M46,28 L46,39 L39,46 L28,46" fill="none" stroke="url(#cornerGrad-br)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M46,21 L46,16" fill="none" stroke="url(#cornerGrad-br)" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+          <path d="M21,46 L16,46" fill="none" stroke="url(#cornerGrad-br)" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+          <circle cx="46" cy="28" r="2.6" fill="#34e0c4"/>
+          <circle cx="28" cy="46" r="2.6" fill="#3aa8f0"/>
+        </svg>
+      </span>
+
+      <!-- faint background line accents -->
+      <span class="line-accent line-top"></span>
+      <span class="line-accent line-bottom"></span>
+
+      <div class="cert-inner">
+
+        <img src="logo.png" alt="VOLTIX" class="cert-logo">
+
+        <span class="cert-divider"></span>
+
+        <p class="cert-kicker">CERTIFICATE OF COMPLETION</p>
+        <h1 class="cert-title">INTERNSHIP TRAINING PROGRAM</h1>
+
+        <p class="cert-line">This certificate is proudly presented to</p>
+
+        <h2 class="cert-name" id="certName">Student Name</h2>
+
+        <p class="cert-line">
+          for successfully completing the internship track
+        </p>
+
+        <div class="track-pill">
+          <span id="certTrack">Track Name</span>
+        </div>
+
+        <p class="cert-desc">
+          in recognition of the dedication, effort and skills demonstrated throughout the program with the VOLTIX team.
+        </p>
+
+        <div class="cert-footer">
+          <div class="footer-date">
+            <span class="footer-label">DATE ISSUED</span>
+            <span class="footer-value" id="certDate">--</span>
+          </div>
+
+          <div class="footer-sign">
+            <span class="sign-line"></span>
+            <a href="https://www.linkedin.com/in/omar-taher-dev1" target="_blank" rel="noopener noreferrer" class="sign-name">Omar Taher</a>
+            <span class="sign-title">Coordinator</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
